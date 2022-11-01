@@ -1,11 +1,23 @@
 //iniciar el servidor
+//import express from 'express';
+//import expbhs from 'express-handlebars';
+//import path from 'path';
+//import stripe from 'stripe';
+
 const express  = require('express');
 const expbhs = require('express-handlebars');
+//const Pool = require('mysql2/typings/mysql/lib/Pool');
 //const { dirname } = require('path');
 const path = require('path');
 const stripe = require('stripe')("sk_test_51Lz4QNIZq884KCDIyGW5mXIcl2GReFX11NaaQrMd58X3X7QjO5oLNYgz0bCXCO9ZR3V03MZGqToCB6diEv72HXLM00CWHdd6Pp")
+const {database} = require('./db');
+const pool = require('./db');
 
+//PUERTO
+//const PORT = require('./config');
+const PORT = process.env.PORT || 3000;
 
+//const { prototype } = require('events');
 //initlalization
 
 const app = express();
@@ -37,6 +49,5 @@ app.use(express.static(path.join(__dirname, 'public'))); //donde pueden ir archi
 
 //Start Server
 
-app.listen(3000, () => {
-    console.log('Server on port', 3000)
-});
+app.listen(PORT);
+    console.log('Server on port', PORT);
