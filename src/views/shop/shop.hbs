@@ -1,0 +1,67 @@
+
+
+<h1 class="text-center">Comprar Productos</h1>
+
+<link rel="stylesheet" href="/css/shop.css">
+
+    <form action="/shop/shop" method="POST">
+
+    <div class=" row justify-content-start">
+
+            <form action="/shop/shop" method="POST">
+
+        <div class="card m-5; product" style="width: 18rem;">
+          <div class="container p-3">
+            <img src="/img/aluminio.jpg" class="img-fluid" style="object-fit: contain;" alt="...">
+            </div>
+            <div class="card-body d-grid gap-2">
+                <h5 class="card-title">50.000$ </h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     
+                    <button type="submit" id="checkout-button">Checkout</button>
+                    <form action="/shop/shop" method="POST">
+                    <script
+                        src="https://checkout.stripe.com/checkout.js"
+                        class="stripe-button"
+                        data-key="pk_test_51Lz4QNIZq884KCDI5e3KeUUS3pBsms6SfVGabZrHnQswckn8XyIiDd7u4g3PgddRrFFjDHlBAx1KobveWwtYsWUv00QXpp4aDU"
+
+                        data-name="EEcofit"
+                        data-description="Your custom designed t-shirt"
+                        data-amount="3000"
+                        data-currency="usd">
+                    </script>
+                    </form>
+                        
+            </div>
+        </div>
+    
+
+        <div class="card m-5; product" style="width: 18rem;">
+           <div class="container p-3 ">
+            <img src="/img/aluminio.jpg" class="img-fluid" style="object-fit: contain;" alt="...">
+            </div>
+            <div class="card-body d-grid gap-2">
+                <h5 class="card-title">50.000$ </h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                   
+                <button type="submit" id="checkout-button">Checkout</button>
+     
+            </div>
+        </div>
+
+        <div class="card m-5; product" style="width: 18rem;">
+            <div class="container p-3">
+            <img src="/img/aluminio.jpg" class="img-fluid" style="object-fit: contain;" alt="...">
+            </div>
+            <div class="card-body d-grid gap-2">
+                <h5 class="card-title">50.000$ </h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                             
+                    <button type="submit" id="btn btn-success">Checkout</button>
+                         
+            </div>
+
+        </div>
+    </form>
+    
+    </div>
