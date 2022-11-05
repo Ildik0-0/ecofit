@@ -1,0 +1,155 @@
+<link rel="stylesheet" href="/css/addclient.css">
+
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="/img/cliente.jpg"
+            class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+            alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registro Del Cliente</h3>
+
+            <form class="px-md-2" action="/cliente/addclient" name ="formularioContacto" method="POST">
+
+              <div class="form-outline mb-4">
+                <input type="text" id="form3Example1q" class="form-control" required name="nom_cliente" />
+                <label class="form-label" for="form3Example1q">Nombre</label>
+              </div>
+              <div class="form-outline mb-4">
+                <input type="text" id="form3Example1q" class="form-control" name="apellido_cliente"/>
+                <label class="form-label" for="form3Example1q">Apellido</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="tel" id="form3Example1q"  class="form-control" placeholder="24248532-2" required oninput="checkRut(this)" name="rut_cliente"/>
+                <label class="form-label" for="form3Example1q">Rut</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" id="form3Example1q" class="form-control" placeholder="+56952526867" name="telefono_cliente"/>
+                <label class="form-label" for="form3Example1q">Numero Celular</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="email" id="form3Example1q" class="form-control" placeholder="email@gmail.com" name="email_cliente"/>
+                <label class="form-label" for="form3Example1q">Correo</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" id="form3Example1q" class="form-control" name="direccion_cliente"/>
+                <label class="form-label" for="form3Example1q">Dirección</label>
+              </div>
+
+               <div class="form-outline mb-4">
+                <input type="text" id="form3Example1q" class="form-control" name="contacto_cliente"/>
+                <label class="form-label" for="form3Example1q">Nombre del Contacto</label>
+              </div>
+
+              <button type="submit" id="btnvalida" class="btn btn-success btn-lg mb-1">Submit</button>
+
+            </form>
+
+<script type="text/javascript">
+
+window.onload = function () {
+
+document.formularioContacto.nom_cliente.focus();
+
+document.formularioContacto.addEventListener('submit', validarFormulario);
+
+}
+
+ 
+
+function validarFormulario(evObject) {
+
+evObject.preventDefault();
+
+var todoCorrecto = true;
+
+var formulario = document.formularioContacto;
+
+for (var i=0; i<formulario.length; i++) {
+
+                if(formulario[i].type =='text') {
+
+                               if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
+
+                               alert (formulario[i].name+ ' no puede estar vacío o contener sólo espacios en blanco');
+
+                               todoCorrecto=false;
+
+                               }
+
+                }
+
+                }
+
+if (todoCorrecto ==true) {formulario.submit();}
+
+}
+
+ 
+
+</script>            
+
+<script>
+  function checkRut(rut_cliente) {
+        // Despejar Puntos
+        var valor = rut_cliente.value.replace('.','');
+        // Despejar Guión
+        valor = valor.replace('-','');
+        
+        // Aislar Cuerpo y Dígito Verificador
+        cuerpo = valor.slice(0,-1);
+        dv = valor.slice(-1).toUpperCase();
+        
+        // Formatear RUN
+        rut_cliente.value = cuerpo + '-'+ dv
+        
+        // Si no cumple con el mínimo ej. (n.nnn.nnn)
+        if(cuerpo.length < 7) { rut_cliente.setCustomValidity("RUT Incompleto"); return false;}
+        
+        // Calcular Dígito Verificador
+        suma = 0;
+        multiplo = 2;
+        
+        // Para cada dígito del Cuerpo
+        for(i=1;i<=cuerpo.length;i++) {
+        
+            // Obtener su Producto con el Múltiplo Correspondiente
+            index = multiplo * valor.charAt(cuerpo.length - i);
+            
+            // Sumar al Contador General
+            suma = suma + index;
+            
+            // Consolidar Múltiplo dentro del rango [2,7]
+            if(multiplo < 7) { multiplo = multiplo + 1; } else { multiplo = 2; }
+      
+        }
+        
+        // Calcular Dígito Verificador en base al Módulo 11
+        dvEsperado = 11 - (suma % 11);
+        
+        // Casos Especiales (0 y K)
+        dv = (dv == 'K')?10:dv;
+        dv = (dv == 0)?11:dv;
+        
+        // Validar que el Cuerpo coincide con su Dígito Verificador
+        if(dvEsperado != dv) { rut_cliente.setCustomValidity("RUT Inválido"); return false; }
+        
+        // Si todo sale bien, eliminar errores (decretar que es válido)
+        rut_cliente.setCustomValidity('');
+     
+    }
+</script>
+ 
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

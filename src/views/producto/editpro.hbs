@@ -1,0 +1,63 @@
+<link href="/css/addpro.css" rel="stylesheet">
+
+<section class="vh-100 bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Editar Producto</h2>
+
+              <form action="/producto/edit/{{editproducto.id}}" method="POST">
+
+                <div class="form-outline mb-4">                 
+                  <select type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nombre Producto" name="nom_producto">
+                        <option> Aluminio </option>
+                        
+                    </select>
+                    <label class="form-label" for="form3Example3cg">Nombre Producto:</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="number" id="form3Example3cg" class="form-control form-control-lg " name="precio_producto" value="{{editproducto.precio_producto}}"/>
+                  <label class="form-label" for="form3Example3cg" >Precio </label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <select type="text"id="form3Example4cg" class="form-control form-control-lg" placeholder="Tipo" name="tipo_producto">
+                        <option> {{editproducto.tipo_producto}} </option>
+                        <option>Fierroso</option>
+                        <option>No Fierroso</option>  
+                      </select>
+                  <label class="form-label" for="form3Example4cg" name="" >Tipo De Metal : </label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="number" id="form3Example4cdg" class="form-control form-control-lg" name="stock_producto" value="{{editproducto.stock_producto}}"/>
+                  <label class="form-label" for="form3Example4cdg"  >Stock Actual : {{editproducto.stock_producto}} kg</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example4cdg" class="form-control form-control-lg" name="descripcion" />
+                  <label class="form-label" for="form3Example4cdg"  >Descripcion (opcional)</label>
+                </div>
+
+                
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Guardar</button>
+                </div>
+
+            
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

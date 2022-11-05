@@ -4,7 +4,7 @@ const {DB_HOST, DB_PASSWORD,
         DB_USER,
         DB_PORT} = require('./config');
 
-module.exports ={
+/*module.exports ={
 
     database: {
         host: DB_HOST,
@@ -12,5 +12,17 @@ module.exports ={
         user: DB_USER,
         password: DB_PASSWORD,
         database: DB_NAME
+    }
+};*/
+
+//direccion de la base de datos
+module.exports ={
+
+    database: {
+        host: 'localhost',
+        port : 3308,
+        user: 'root',
+        password:'admin',
+        database: 'ecofit'
     }
 };

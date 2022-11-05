@@ -18,8 +18,12 @@ router.get('/ping', async (req, res) =>{
 });
 
 router.get('/create', async (req, res) =>{
-    const result = await pool.query('INSERT INTO usuarios(nom_usuario) VALUE ("JONH")')
+    //const result = await pool.query('INSERT INTO usuarios(nom_usuario) VALUE ("JONH")')
     res.json(result)
+})
+
+router.post('/compra/edit', (req, res)=>{////aqui deber ir pago
+    res.redirect('/compra/viewcompra')
 })
 
 module.exports = router;

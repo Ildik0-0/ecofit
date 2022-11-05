@@ -1,46 +1,44 @@
-//rutas oredefinadas 
-const {Router} = require('express');
-const { default: Stripe } = require('stripe');
-const  router = Router();
-const stripe = require('stripe')('sk_test_51Lz4QNIZq884KCDIyGW5mXIcl2GReFX11NaaQrMd58X3X7QjO5oLNYgz0bCXCO9ZR3V03MZGqToCB6diEv72HXLM00CWHdd6Pp')
+const express = require('express');
+const router = express.Router();
+const { body } = require('express-validator');
+const pool = require('../db');
 
-
-
-router.get('/shop', (req, res) =>{    
-    res.render('shop/shop');
-});
-
-
-
-router.post('/shop', async (req, res)=>{
-    console.log(req.body);
-    const customer = await stripe.customers.create({
-        email: req.body.stripeEmail,
-        source: req.body.stripeToken
-    });
-
-    const charge = await stripe.charges.create({
-        amount: '3000',
-        currency: 'usd',
-        customer: customer.id,
-        description : 'No ferroso'
-    });
-    console.log(charge.id);
-    res.send('received');
-
-});
+//const bodyParser = require('body-parser')
+//const app = express();
+//app.use(bodyParser.urlencoded({extended:true}));
 
 
 
 
-router.get('/success', (req, res) =>{
+router.get('/viewshop', async (req, res)=>{
+
+    const {id} = req.params;
+    const viewtodo = await pool.query('SELECT * FROM productos');
+    //const viewtodo = await pool.query('SELECT * FROM productos WHERE id = ?', [id]);
+    console.log(viewtodo);
+    console.log(id);
     
-    res.render('shop/success');
+     res.render('shop/viewshop', {viewtodo});
+
+    //res.render('shop/viewshop');
+
+
 });
 
-router.get('/cancel', (req, res) =>{
-    
-    res.render('shop/cancel');
-});
+router.post('/viewshop', async (req, res)=>{
+
+
+   
+
+    res.redirect('/shop/viewshop');
+}); 
+
+
+
+
+
+
+
+
 
 module.exports = router;

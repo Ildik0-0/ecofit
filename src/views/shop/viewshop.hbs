@@ -1,0 +1,49 @@
+<div class="container p-4" >
+
+    <h1>Shop</h1>
+
+    <div class="row">
+
+         
+{{#each viewtodo}}
+      
+
+                <div class="col-md-3" style="width: 18rem;">
+                   
+                    <div class="card-text-center">
+                        <div class="card-body border">                           
+                               
+                                <div class="card-body">
+                                   <img src="/img/aluminio.jpg" width="50" class="card-img-top" alt="imagen que no tengo">
+                                    <h3 class="card-title">
+                                        {{nom_producto}}
+                                    </h3>
+                                    <p class="card-text">
+                                         Precio: ${{precio_producto}}
+                                    </p>
+                                    <p class="card-text" >
+                                        Stock: {{stock_producto}}Kg
+                                    </p>
+                                    <p class="card-text">
+                                         Descripcion: {{descripcion}}
+                                    </p>
+                                    
+                                   <a href="/compra/edit/{{id}}" class="btn btn-primary">Ir a Comprar</a>
+                                </div>    
+                        
+                        </div>          
+                        
+                    
+                    </div>   
+                </div>
+
+                
+
+            {{else}}
+
+            {{/each}}
+
+    </div>
+
+    
+</div>
