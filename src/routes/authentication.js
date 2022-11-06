@@ -1,13 +1,15 @@
 
+const funciones = require('./funciones')
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const {isLoggedIn, isNotLoggedIn} =  require('../lib/auth');
 const { body, validationResult} = require('express-validator');
 const app = express();
-const e = require('connect-flash');
+const flash = require('connect-flash');
 const session = require('express-session');
 app.use(express.urlencoded({extended: true}));
+
 
 
 router.get('/signup', (req, res) => {
@@ -24,19 +26,41 @@ router.post('/signup',
             .exists()
             .isLength({min:3}),
     
-    body('email' , 'ingrese email')
-            .exists()
-            .isEmail(),
+    
+           
     
     body('pass', 'ingresar una comtraseña'),
-    ], (req, res, next) =>{
+
+    
+
+    ]
+    
+    
+    
+    , (req, res, next) =>{
         /*const error = validationResult(req);
         if (!error.isEmpty()){
         res.status(400).json({error: error.array()});
         console.log(error)
         }*/
         const error = validationResult(req);
-        var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        let {email} = req.body
+        let result = funciones.validarEmail(email);
+        
+        console.log(result);
+        console.log(email);
+
+    if (result == true){
+        
+       console.log('valido')
+    }else{
+         req.flash('message', 'La dirección de email es incorrecta')
+         return res.redirect('back')
+    }
+
+
+
+       /* var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
         if(!expr.test('email')){
             req.flash('message','Ingrese un email valido')
@@ -55,15 +79,13 @@ router.post('/signup',
             
         }else{
             req.flash('success', 'todo bien')
-        }
+        }      
 
         
-
-        
-    }
+    }*/
 
 
-   
+}
 
 
 
@@ -85,7 +107,7 @@ router.post('/signin', (req, res, next) =>{
 
     passport.authenticate('local.signin', {
         successRedirect: 'auth/perfil',
-        failureRedirect: '/signin',
+        failureRedirect: '/signup',
         failureFlash: true           
    
     })(req, res, next)

@@ -9,42 +9,49 @@
             class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
             alt="Sample photo">
           <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registro Del Cliente</h3>
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registro Del Provedor</h3>
 
             <form class="px-md-2" action="/cliente/addclient" name ="formularioContacto" method="POST">
 
               <div class="form-outline mb-4">
-                <input type="text" id="form3Example1q" class="form-control" required name="nom_cliente" />
+                <input type="text" id="form3Example1q" class="form-control" required name="nom_proveedor" />
                 <label class="form-label" for="form3Example1q">Nombre</label>
-              </div>
-              <div class="form-outline mb-4">
-                <input type="text" id="form3Example1q" class="form-control" name="apellido_cliente"/>
-                <label class="form-label" for="form3Example1q">Apellido</label>
-              </div>
+              </div>            
 
+              
               <div class="form-outline mb-4">
-                <input type="tel" id="form3Example1q"  class="form-control" placeholder="24248532-2" required oninput="checkRut(this)" name="rut_cliente"/>
-                <label class="form-label" for="form3Example1q">Rut</label>
-              </div>
-
-              <div class="form-outline mb-4">
-                <input type="text" id="form3Example1q" class="form-control" placeholder="+56952526867" name="telefono_cliente"/>
+                <input type="text" id="form3Example1q" class="form-control" placeholder="56952526867" name="telefono_proveedor"/>
                 <label class="form-label" for="form3Example1q">Numero Celular</label>
               </div>
 
               <div class="form-outline mb-4">
-                <input type="email" id="form3Example1q" class="form-control" placeholder="email@gmail.com" name="email_cliente"/>
+                <input type="email" id="form3Example1q" class="form-control" placeholder="email@gmail.com"   name="email_proveedor"/>
                 <label class="form-label" for="form3Example1q">Correo</label>
               </div>
 
               <div class="form-outline mb-4">
-                <input type="text" id="form3Example1q" class="form-control" name="direccion_cliente"/>
+                <input type="text" id="form3Example1q" class="form-control" name="direccion_proveedor"/>
                 <label class="form-label" for="form3Example1q">Dirección</label>
               </div>
 
                <div class="form-outline mb-4">
-                <input type="text" id="form3Example1q" class="form-control" name="contacto_cliente"/>
+                <input type="text" id="form3Example1q" class="form-control" name="articulo"/>
+                <label class="form-label" for="form3Example1q">Articulo</label>
+              </div>
+
+               <div class="form-outline mb-4">
+                <input type="text" id="form3Example1q" class="form-control" name="cantidad_articulo"/>
+                <label class="form-label" for="form3Example1q">Cantidad</label>
+              </div>
+
+               <div class="form-outline mb-4">
+                <input type="text" id="form3Example1q" class="form-control" name="contacto_proveedor"/>
                 <label class="form-label" for="form3Example1q">Nombre del Contacto</label>
+              </div>
+
+               <div class="form-outline mb-4">
+                <input type="text" id="form3Example1q" class="form-control" name="valor_compra"/>
+                <label class="form-label" for="form3Example1q">Valor Total</label>
               </div>
 
               <button type="submit" id="btnvalida" class="btn btn-success btn-lg mb-1">Submit</button>
@@ -55,7 +62,7 @@
 
 window.onload = function () {
 
-document.formularioContacto.nom_cliente.focus();
+document.formularioContacto.nom_proveedor.focus();
 
 document.formularioContacto.addEventListener('submit', validarFormulario);
 
@@ -95,8 +102,38 @@ if (todoCorrecto ==true) {formulario.submit();}
 
 </script>            
 
+
 <script>
-  function checkRut(rut_cliente) {
+ /* var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+
+function isEmailValid(email_cliente) {
+    if (!email_cliente)
+        return false;
+
+    if(email.length>254)
+        return false;
+
+    var valid = emailRegex.test(email_cliente);
+    if(!valid)
+        return false;
+
+    // Further checking of some things regex can't handle
+    var parts = email_cliente.split("@");
+    if(parts[0].length>64)
+        return false;
+
+    var domainParts = parts[1].split(".");
+    if(domainParts.some(function(part) { return part.length>63; }))
+        return false;
+
+    return true;
+}*/
+</script>
+
+
+
+<script>
+  /*function checkRut(rut_cliente) {
         // Despejar Puntos
         var valor = rut_cliente.value.replace('.','');
         // Despejar Guión
@@ -143,7 +180,7 @@ if (todoCorrecto ==true) {formulario.submit();}
         // Si todo sale bien, eliminar errores (decretar que es válido)
         rut_cliente.setCustomValidity('');
      
-    }
+    }*/
 </script>
  
 

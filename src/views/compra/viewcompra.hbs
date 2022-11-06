@@ -16,20 +16,19 @@
                         <div class="card-body border">                           
                                
                                 <div class="card-body">
-                                   {{#each compratotal}}
+                                  {{#each tbventa}}
                                     <h3 class="card-title">
-                                        {{{nom_producto}}}
+                                        {{{nombre_producto}}}
                                     </h3>
-                                    <p class="card-text">
-                                         Precio: ${{precio_producto}}
-                                    </p>
-                                    {{/each}}
-
-                                        
-                                    <p class="card-text">
-                                         Catidad: <span ></span>
-                                    </p>
+                                   {{!colocar cantidad}}
                                  
+                                    <p class="card-text">
+                                         Catidad:  {{cantidad_venta}} <span ></span>
+                                    </p>
+                                    <p class="card-text">
+                                         Total:  {{valor_venta}} <span ></span>
+                                    </p>
+                                  {{/each}}
                                      
                                    <a href="#" class="btn btn-primary" onclick="">Comprar</a>
                                 </div>    

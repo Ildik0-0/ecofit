@@ -3,17 +3,19 @@
  
  <table class="table" >
  
- {{#each viewcliente}}
+ {{#each viewproducto}}
 
   <thead class="thead-dark">
     <tr>
       
       <th scope="col">Nombre</th>
-      <th scope="col">Apallido</th>
-      <th scope="col">Rut</th>
+      <th scope="col">Numero Celular</th>
+      <th scope="col">Articulo</th>
       <th scope="col">Email</th>
       <th scope="col">Contacto</th>
       <th scope="col">Direccion</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Total pago</th>
       <th scope="col"  class="p-2" >Editar</th>
       <th scope="col">
         <a href="/cliente/addclient" class="btn btn-success p-2">Agregar</a>
@@ -23,12 +25,14 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{nom_cliente}}</td>
-      <td>{{apellido_cliente}}</td>
-      <td>{{rut_cliente}}</td>
-      <td>{{email_cliente}}</td>
-      <td>{{contacto_cliente}}</td>
-      <td>{{direccion_cliente}}</td>
+      <td>{{nom_proveedor}}</td>
+      <td>{{telefono_proveedor}}</td>
+      <td>{{articulo}}</td>
+      <td>{{email_proveedor}}</td>
+      <td>{{contacto_proveedor}}</td>
+      <td>{{direccion_proveedor}}</td>
+       <td>{{cantidad_articulo}}</td>
+      <td>{{valor_compra}}</td>
       <td>
             <a href="/cliente/delete/{{id}}" class="btn btn-danger p-2">Borrar</a>
             <a href="/cliente/edit/{{id}}" class="btn btn-primary p-2">Editar</a>

@@ -33,6 +33,7 @@ passport.use('local.signin', new LocalStrategy ({
          done(null, user, req.flash('success', 'Welcome ' + user.usuario));
       }else{
          done(null, false, req.flash('message', 'contraseña mala'));
+         
       }
      
   }else{
