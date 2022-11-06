@@ -72,12 +72,13 @@ app.use((req, res, next) => {
 app.use(require('./routes'));
 app.use(require('./routes/index'));
 app.use(require('./routes/authentication'));
-//app.use(require('./routes/funciones'));
+app.use('/admin', require('./routes/admin'));
 app.use('/shop', require('./routes/shop'));
 app.use('/producto', require('./routes/crudpro'));
 app.use('/cliente', require('./routes/cliente'));
 app.use('/auth', require('./routes/authentication'));
 app.use('/compra', require('./routes/compra'));
+app.use('/pago',require('./routes/pago'));
 
 
 //Static files

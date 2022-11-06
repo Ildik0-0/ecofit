@@ -1,0 +1,186 @@
+<link rel="stylesheet" href="/css/pago.css">
+{{!----------CSS--------------}}
+<script>
+$(document).ready(function () {
+  var context = {
+    "items" : [{"name":"valor_venta"},{"name":"cantidad_venta"},{"name":"item3"},{"name":"item4"},{"name":"item5"},{"name":"item6"},{"name":"item7"},{"name":"item8"},{"name":"item9"},{"name":"item10"},{"name":"item11"},{"name":"item12"},{"name":"item13"}]
+  };
+  Handlebars.registerHelper('test', function(lvalue, operator, rvalue, options) {
+	var doDisplay = false;
+	var items = (""+rvalue).split("|");
+	var arrayLength = items.length;
+	for (var i = 0; (i < arrayLength); i++) {
+		if (operator == "eq") {
+	    	if (lvalue == items[i]) {
+	    		doDisplay = true;
+	    	}
+	    } else if (operator == "ne") {
+	    	if (lvalue != items[i]) {
+	    		doDisplay = true;
+	    	}
+	    } else if (operator == "gt") {
+	    	if (parseFloat(lvalue) > parseFloat(items[i])) {
+	    		doDisplay = true;
+	    	}
+	    } else if (operator == "lt") {
+	    	if (parseFloat(lvalue) < parseFloat(items[i])) {
+	    		doDisplay = true;
+	    	}
+	    }else if (operator == "le") {
+	    	if (parseFloat(lvalue) <= parseFloat(items[i])) {
+	    		doDisplay = true;
+	    	}
+	    }else if (operator == "ge") {
+	    	if (parseFloat(lvalue) >= parseFloat(items[i])) {
+	    		doDisplay = true;
+	    	}
+	    }
+	}
+    if (doDisplay) {
+    	return options.fn(this);
+    } else {
+    	return "";
+    }
+});
+  var source = $("#sourceTemplate").html();
+  var template = Handlebars.compile(source);
+  var html = template(context);
+  $("#resultPlaceholder").html(html);
+
+
+
+});
+</script>
+
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row justify-content-center mb-3">
+      <div class="col-md-12 col-xl-10">
+        <div class="card shadow-0 border rounded-3">
+          <div class="card-body">
+           
+            <div class="row">
+              <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                  <img src="/img/cliente.jpg"
+                    class="w-100" />
+                  <a href="#!">
+                    <div class="hover-overlay">
+                      <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+            
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                
+                <h5></h5>
+                <div class="d-flex flex-row">
+                  <div class="text-danger mb-1 me-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <span>310</span>
+                </div>
+                <div class="mt-1 mb-0 text-muted small">
+                  <span>100% cotton</span>
+                  <span class="text-primary"> • </span>
+                  <span>Light weight</span>
+                  <span class="text-primary"> • </span>
+                  <span>Best finish<br /></span>
+                </div>
+                <div class="mb-2 text-muted small">
+                  <span>Unique design</span>
+                  <span class="text-primary"> • </span>
+                  <span>For men</span>
+                  <span class="text-primary"> • </span>
+                  <span>Casual<br /></span>
+                </div>
+                <p class="text-truncate mb-4 mb-md-0">
+                  There are many variations of passages of Lorem Ipsum available, but the
+                  majority have suffered alteration in some form, by injected humour, or
+                  randomised words which don't look even slightly believable.
+                </p>
+              </div>
+          
+              <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                <div class="d-flex flex-row align-items-center mb-1">
+                  
+                   {{#each vi}}
+    
+                  
+                   
+               
+                </div>
+              
+                <div class="d-flex flex-column mt-4">
+                 <p>
+            
+                  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+              </div>
+            </div>
+                      
+                    
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Seguro que Quiere comprar?
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+
+  <form action="/pago/purchase" method="POST">
+          
+
+          <label for="exampleInputEmail1" class="form-label">Genial!! Ingrese Sus Datos</label>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Ingrese Su Direccion</label>
+            <input type="text" class="form-control" name="direcpago" aria-describedby="emailHelp">
+
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control" name="emailpago" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label" name="valor_venta" value="{{valor_venta}}"  >Moto a Pagar {{valor_venta}} </label>
+          <br>
+          <label for="exampleInputPassword1" class="form-label" name="valor_venta" value="{{cantidad_venta}}"  >Cantidad Selecionada {{cantidad_venta}} </label>
+        </div>
+
+                  <form action="pago/purchase" method="POST">
+                      <script
+                        
+                        src="https://checkout.stripe.com/checkout.js"
+                        class="stripe-button"
+                        data-key="pk_test_51Lz4QNIZq884KCDI5e3KeUUS3pBsms6SfVGabZrHnQswckn8XyIiDd7u4g3PgddRrFFjDHlBAx1KobveWwtYsWUv00QXpp4aDU"
+
+                        data-name="EEcofit"
+                        data-description="Your custom designed t-shirt"
+                        data-amount="3000"
+                        data-currency="usd">
+                    </script>
+                      </script>
+                       <button type="submit" class="btn btn-primary">Pagar</button>
+                  </form>
+                                      
+                    
+  </form>          
+                   
+
+    
+ {{/each}}
+
+
+  </div>
+</div>
+</section>

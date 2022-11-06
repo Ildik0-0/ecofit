@@ -22,8 +22,8 @@ router.get('/create', async (req, res) =>{
     res.json(result)
 })
 
-router.post('/compra/edit', (req, res)=>{////aqui deber ir pago
+/*router.post('/compra/edit', (req, res)=>{////aqui deber ir pago
     res.redirect('/compra/viewcompra')
-})
+})*/
 
 module.exports = router;

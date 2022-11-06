@@ -39,6 +39,7 @@ router.get('/', async (req, res) => {
 router.get('/delete/:id', async (req, res) => {
     const {id} =req.params;
     await pool.query('DELETE FROM productos WHERE ID = ?', [id]);
+    //await pool.query('UPDATE ventas set ? WHERE ID = producto_id?', [id])
     req.flash('success', 'Se elimino correctamenete' )
     res.redirect('/producto');
     

@@ -1,49 +1,40 @@
-<div class="container p-4" >
 
-    <h1>Shop</h1>
 
-    <div class="row">
 
-         
-{{#each viewtodo}}
+
+ 
+
+<link href="/css/admin.css" rel="stylesheet">
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<div class="container">
+   <h3 class="pb-3 mb-4 font-italic border-bottom">
+      SHOP
+   </h3>
+   
+   {{#each viewtodo}}
+  <div class="container p-2">
+   <div class="row">
       
-
-                <div class="col-md-3" style="width: 18rem;">
-                   
-                    <div class="card-text-center">
-                        <div class="card-body border">                           
-                               
-                                <div class="card-body">
-                                   <img src="/img/aluminio.jpg" width="50" class="card-img-top" alt="imagen que no tengo">
-                                    <h3 class="card-title">
-                                        {{nom_producto}}
-                                    </h3>
-                                    <p class="card-text">
-                                         Precio: ${{precio_producto}}
-                                    </p>
-                                    <p class="card-text" >
-                                        Stock: {{stock_producto}}Kg
-                                    </p>
-                                    <p class="card-text">
-                                         Descripcion: {{descripcion}}
-                                    </p>
-                                    
-                                   <a href="/compra/edit/{{id}}" class="btn btn-primary">Ir a Comprar</a>
-                                </div>    
-                        
-                        </div>          
-                        
-                    
-                    </div>   
-                </div>
-
-                
-
-            {{else}}
+      <div class="col-md-4">
+         <div class="card mb-4 text-white bg-dark">
+            <img class="card-img-top" src="/img/cobre.jpg" alt="Card image cap">
+            <div class="card-body">
+               <h3 class="card-title"> {{nom_producto}}</h3>
+               <p class="card-text">{{descripcion}}Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <h5> Stock: {{stock_producto}}Kg</h5>
+               <h5> Precio: ${{precio_producto}}</h5>
+               <a href="/compra/edit/{{id}}"  class="btn btn-outline-light btn-sm">Ir a Comprar</a>
+            </div>
+         </div>
+      </div>
+   </div>
+  </div> 
+    {{else}}
 
             {{/each}}
 
-    </div>
-
-    
 </div>

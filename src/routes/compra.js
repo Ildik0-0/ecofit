@@ -18,12 +18,9 @@ router.get('/viewcompra', (req, res)=>{
     res.render('compra/viewcompra');
 });
 router.post('/viewcompra', (req, res)=>{
-
-
-
-
-    res.redirect('/compra');
+res.redirect('/compra');
 });
+
 router.get('/', async (req, res) => {// solamente /compra
     const {id} = req.params;
     const tbventa = await pool.query('SELECT * FROM ventas');
@@ -41,47 +38,36 @@ router.get('/compra', (req, res)=>{
 });
 
 router.post('/compra', async (req, res)=>{
-
-    
-
-    res.redirect('/compra')
+       res.redirect('/compra')
 });
    
 router.get('/', async (req, res) => {// solamente /compra
     const {id} = req.params;
     const viewtodo = await pool.query('SELECT * FROM productos');
-    //const viewtodo = await pool.query('SELECT * FROM productos WHERE id = ?', [id]);
-    //console.log(viewtodo);
-    //console.log(id);
-    
      res.render('compra/compra', {viewtodo});
      //res.render('compra/viewcompra', {viewtodo});
  
  });
 
- router.get('/edit/:id', urlencodedParser,  async (req, res) => { //crud para  editar desde la tabla productos y lo seleciona desde el id
-
-   
+router.get('/edit/:id', urlencodedParser,  async (req, res) => { //crud para  editar desde la tabla productos y lo seleciona desde el id
 
 const {id} = req.params;
-
-    
 
 console.log(' estabos en el inicio del crud 1' )
 console.log(req.body)
 
-
 const compra = await pool.query('SELECT * FROM productos WHERE id = ?', [id]);
    
-    //const stock = await pool.query('SELECT stock_producto FROM productos')
     
-    //console.log(stock , '----------------------' );
 console.log('los que trae la compra de producto 1', compra)
     
     
     res.render('compra/compra', {compra: compra[0]});
   
 });
+
+
+
 
 
 router.post('/edit/:id', async (req, res) => {
@@ -164,7 +150,8 @@ let venta = {cantidad_venta, valor_venta, nombre_producto ,modo_pago, cliente_id
     
     
     //req.flash('success', 'El Producto ha sido editado');
-    res.redirect('/compra');
+    //res.redirect('/compra');
+    res.redirect('/pago');
 });
 
 

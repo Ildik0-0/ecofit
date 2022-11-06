@@ -1,15 +1,17 @@
 //const { request } = require('express');
 //const { Passport } = require('passport');
 //const e = require('connect-flash');
+const funciones = require('../routes/funciones')
 const { body, validationResult } = require('express-validator');
 const express = require('express');
 const app = express();
 const flash = require('connect-flash');
-
+let session = require('express-session')
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../db');
 const helpers = require('../lib/helpers');
+
 
 passport.use('local.signin', new LocalStrategy ({
    usernameField: 'usuario',
@@ -18,10 +20,7 @@ passport.use('local.signin', new LocalStrategy ({
 }, async  (req, usuario, pass, done) =>{
    console.log(req.body);
   const rows = await pool.query('SELECT * FROM usuarios Where usuario = ?', [usuario]);
-  
-
-
-  
+   
   //aqui se valida el password
 
   if(rows.length > 0){
@@ -39,9 +38,6 @@ passport.use('local.signin', new LocalStrategy ({
   }else{
    return done(null, false, req.flash('message', 'El usuario no existe amigo'));
   }
- 
-  
-
 }));
 
 passport.use('local.signup', new LocalStrategy ({
@@ -50,31 +46,37 @@ passport.use('local.signup', new LocalStrategy ({
    passReqToCallback: true
    
 }
-
-
-
 ,async (req, usuario, pass, done) =>{
  
-
-
 const {nom_usuario} = req.body;
+let {email} = req.body
+      let emailuser = funciones.validarEmail(email);
+        
+        console.log(email);
+        
+
+   if (emailuser == true){
+      console.log('valido');
+   }else{
+      console.log('email invalid')
+         //req.flash('message', 'La dirección de email es incorrecta')
+         //return res.redirect('/signup')
+   };
+
+email= emailuser;
 
 const newUser = {
    usuario,
    nom_usuario,
-   
+   email,
    pass
 };
 
 
 newUser.pass = await helpers.encryptPassword(pass);
-const result = await pool.query('INSERT INTO usuarios SET ?', [newUser]);
+let result = await pool.query('INSERT INTO usuarios SET ?', [newUser]);
 newUser.id = result.insertId;
 return done(null, newUser);
-
-
- 
-
 
 }));
 
